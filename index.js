@@ -123,7 +123,10 @@ const minter = (proxyList, limit) => {
 (async () => {
   const proxyList = parseFile("proxy.txt");
 
-  const limit = process.argv[2] || 50;
+  let limit = process.argv[2] || 50;
 
+  if (limit > proxyList.length) {
+    limit = proxyList.length;
+  }
   await minter(proxyList, limit);
 })();
